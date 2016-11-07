@@ -1,0 +1,6 @@
+c:\users\sebastian\documents\visual studio 2015\Projects\NeuralNetworkTrainer\NeuralNetworkTrainer\bin\Debug\NeuralNetworkTrainer.exe.config
+c:\users\sebastian\documents\visual studio 2015\Projects\NeuralNetworkTrainer\NeuralNetworkTrainer\bin\Debug\NeuralNetworkTrainer.exe
+c:\users\sebastian\documents\visual studio 2015\Projects\NeuralNetworkTrainer\NeuralNetworkTrainer\bin\Debug\NeuralNetworkTrainer.pdb
+c:\users\sebastian\documents\visual studio 2015\Projects\NeuralNetworkTrainer\NeuralNetworkTrainer\obj\Debug\NeuralNetworkTrainer.csprojResolveAssemblyReference.cache
+c:\users\sebastian\documents\visual studio 2015\Projects\NeuralNetworkTrainer\NeuralNetworkTrainer\obj\Debug\NeuralNetworkTrainer.exe
+c:\users\sebastian\documents\visual studio 2015\Projects\NeuralNetworkTrainer\NeuralNetworkTrainer\obj\Debug\NeuralNetworkTrainer.pdb
