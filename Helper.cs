@@ -8,7 +8,13 @@ namespace NeuralNetworkTrainer
 {
     public class Helper
     {
-        public Dictionary<string, string> CreateControlData()
+        private Dictionary<string, string> Data;
+
+        public Helper()
+        {
+            Data = CreateControlData();
+        }
+        private Dictionary<string, string> CreateControlData()
         {
             Dictionary<string, string> result = new Dictionary<string, string>();
 
@@ -23,6 +29,42 @@ namespace NeuralNetworkTrainer
                 result.Add(key, value);
             }
             return result;
+        }
+
+        public Dictionary<int,int[]> GetInputs()
+        {
+            int i = 1;
+            Dictionary<int, int[]> inputs = new Dictionary<int, int[]>();
+            foreach(var data in Data)
+            {
+                var chars = data.Key.ToCharArray();
+                List<int> inputsValue = new List<int>();
+                foreach(var inputChar in chars)
+                {
+                    inputsValue.Add((int)Char.GetNumericValue(inputChar));
+                }
+                inputs.Add(i, inputsValue.ToArray());
+                i++;
+            }
+            return inputs;
+        }
+
+        public Dictionary<int,int[]> GetOutputs()
+        {
+            int i = 1;
+            Dictionary<int, int[]> outputs = new Dictionary<int, int[]>();
+            foreach (var data in Data)
+            {
+                var chars = data.Value.ToCharArray();
+                List<int> outputsValue = new List<int>();
+                foreach (var inputChar in chars)
+                {
+                    outputsValue.Add((int)Char.GetNumericValue(inputChar));
+                }
+                outputs.Add(i, outputsValue.ToArray());
+                i++;
+            }
+            return outputs;
         }
     }
 }
