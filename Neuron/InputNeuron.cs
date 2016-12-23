@@ -10,16 +10,17 @@ namespace NeuralNetworkTrainer.Neuron
     {
 
         public double InputVage { get; set; }
-
+        public double InputValue { get; set; }
         public InputNeuron() : base()
         {
 
             InputVage = GetSartWage();
         }
 
-        public override double CalculateValue()
+        public double CalculateValue()
         {
-            return 0.0;
+            NeuronValue = ActivationFunction(InputVage * InputValue);
+            return NeuronValue;
         }
     }
 }

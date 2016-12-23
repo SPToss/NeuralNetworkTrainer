@@ -8,17 +8,32 @@ namespace NeuralNetworkTrainer.Neuron
 {
     public class OutputNeuron : NeuronBase
     {
-        List<double> InputVages { get; set; } = new List<double>();
-        public OutputNeuron(int hiddenNeurons) : base()
+        public List<double> _inputVages { get; set; } = new List<double>();
+        public double ExpectedOutput { get; set; }
+        public OutputNeuron(int hiddentCount) : base()
         {
-            for (int i = 0; i < hiddenNeurons; i++)
+            for (int i = 0; i < hiddentCount; i++)
             {
-                InputVages.Add(GetSartWage());
+                _inputVages.Add(GetSartWage());
             }
         }
-        public override double CalculateValue()
+        public double CalculateValue(List<double> hiddenValues)
         {
-            return 0.0;
+            double x = 0.0;
+            int iterator = 0;
+            foreach (var hidden in hiddenValues)
+            {
+                x += (hidden * _inputVages[iterator]);
+                iterator++;
+            }
+            NeuronValue = ActivationFunction(x);
+            return NeuronValue;
+        }
+
+        public double CalculateBackPropagation()
+        {
+            BackPropagationValue =  (ExpectedOutput - NeuronValue) * (NeuronValue * (1 - NeuronValue));
+            return BackPropagationValue;
         }
     }
 }

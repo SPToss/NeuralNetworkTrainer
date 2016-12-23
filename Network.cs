@@ -34,7 +34,23 @@ namespace NeuralNetworkTrainer
                 Outputs.Add(new OutputNeuron(Hiddens.Count));
             }
         }
-
+        public void Test()
+        {
+            List<double> inputValues = new List<double>();
+            List<double> hiddenValues = new List<double>();
+            List<double> outputValues = new List<double>();
+            var currentDataSet = GetRandomInput();
+            var currentInput = InputsValues[currentDataSet];
+            var currentOutput = OutputsValues[currentDataSet];
+            var iterator = 0;
+            foreach(var input in Inputs)
+            {
+                input.InputValue = currentInput[iterator++];
+            }
+            inputValues = Inputs.Select(x => x.CalculateValue()).ToList();
+            hiddenValues = Hiddens.Select(x => x.CalculateValue(inputValues)).ToList();
+            outputValues = Outputs.Select(x => x.CalculateValue(hiddenValues)).ToList();
+        }
         public void Train(int trainRate)
         {
             var _trainRate = trainRate;
