@@ -18,10 +18,18 @@ namespace NeuralNetworkTrainer
         {
             Dictionary<string, string> result = new Dictionary<string, string>();
 
-            for (int i = 1; i <= 255; i++)
+            for (int i = 0; i <= 255; i++)
             {
                 string value = string.Empty;
-                value = "1";
+                if(i== 0)
+                {
+                    value = "0";
+                }
+                else
+                {
+                    value = "1";
+                }
+
                 value = value.PadRight(i, '0');                
                 value = value.PadLeft(255, '0');
                 string key = Convert.ToString(i, 2);
@@ -33,7 +41,7 @@ namespace NeuralNetworkTrainer
 
         public Dictionary<int,int[]> GetInputs()
         {
-            int i = 1;
+            int i = 0;
             Dictionary<int, int[]> inputs = new Dictionary<int, int[]>();
             foreach(var data in Data)
             {
@@ -51,7 +59,7 @@ namespace NeuralNetworkTrainer
 
         public Dictionary<int,int[]> GetOutputs()
         {
-            int i = 1;
+            int i = 0;
             Dictionary<int, int[]> outputs = new Dictionary<int, int[]>();
             foreach (var data in Data)
             {

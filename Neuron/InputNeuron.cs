@@ -22,5 +22,17 @@ namespace NeuralNetworkTrainer.Neuron
             NeuronValue = ActivationFunction(InputVage * InputValue);
             return NeuronValue;
         }
+
+        public double CalculateBackPropagation(List<HiddenNeuron> OutputValue,int iterator)
+        {
+            var x = 0.0;
+            foreach (var output in OutputValue)
+            {
+                x += output.BackPropagationValue * output._inputVages[iterator];
+            }
+
+            BackPropagationValue = x;
+            return x;
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace NeuralNetworkTrainer.Neuron
 {
     public class HiddenNeuron : NeuronBase
     {
-        private List<double> _inputVages { get; set; } = new List<double>();
+        public List<double> _inputVages { get; set; } = new List<double>();
         public HiddenNeuron(int inputCount) : base()
         {
             for (int i = 0; i < inputCount; i++)
@@ -28,17 +28,28 @@ namespace NeuralNetworkTrainer.Neuron
             NeuronValue = ActivationFunction(x);
             return NeuronValue;
         }
-        public double CalculateBackPropagation(List<double> OutputValue)
+        public double CalculateBackPropagation(List<OutputNeuron> OutputValue, int iterator)
         {
             var x = 0.0;
-            var iterator = 0;
             foreach (var output in OutputValue)
             {
-                x += output * _inputVages[iterator++];
+                x += output.BackPropagationValue * output._inputVages[iterator];
             }
 
             BackPropagationValue = x;
             return x;
+        }
+
+        public void UpdateVage(List<InputNeuron> inputs, double trainRate)
+        {
+            int iterator = 0;
+            List<double> newVage = new List<double>();
+            foreach(var vage in _inputVages)
+            {
+                newVage.Add(vage * trainRate * BackPropagationValue * inputs[iterator++].NeuronValue); 
+            }
+            _inputVages.Clear();
+            _inputVages.AddRange(newVage);
         }
     }
 }

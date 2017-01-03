@@ -47,9 +47,24 @@ namespace NeuralNetworkTrainer
             {
                 input.InputValue = currentInput[iterator++];
             }
+            iterator = 0;
+            foreach (var output in Outputs)
+            {
+                output.ExpectedOutput = currentOutput[iterator++];
+            }
             inputValues = Inputs.Select(x => x.CalculateValue()).ToList();
             hiddenValues = Hiddens.Select(x => x.CalculateValue(inputValues)).ToList();
             outputValues = Outputs.Select(x => x.CalculateValue(hiddenValues)).ToList();
+
+            var outputBack = Outputs.Select(x => x.CalculateBackPropagation());
+            iterator = 0;
+            var hidddenBack = Hiddens.Select(x => x.CalculateBackPropagation(Outputs, iterator++)).ToList();
+            iterator = 0;
+            var inputBack = Inputs.Select(x => x.CalculateBackPropagation(Hiddens, iterator++)).ToList();
+
+            Hiddens.ForEach(x => x.UpdateVage(Inputs, 1.2));
+
+            Outputs.ForEach(x => x.UpdateVage(Hiddens, 1.2));
         }
         public void Train(int trainRate)
         {

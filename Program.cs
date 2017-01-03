@@ -9,7 +9,11 @@ namespace NeuralNetworkTrainer
     {
         static void Main(string[] args)
         {
-            Network network = new Network(8, 46, 256);
+            Network network = new Network(8, 46, 255);
+            for(var i = 0; i<= 5555; i++)
+            {
+                network.Test();
+            }
             network.Test();
             var stop = 0; 
         }

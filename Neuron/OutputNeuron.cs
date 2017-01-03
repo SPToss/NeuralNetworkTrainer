@@ -35,5 +35,17 @@ namespace NeuralNetworkTrainer.Neuron
             BackPropagationValue =  (ExpectedOutput - NeuronValue) * (NeuronValue * (1 - NeuronValue));
             return BackPropagationValue;
         }
+
+        public void UpdateVage(List<HiddenNeuron> hiddens, double trainRate)
+        {
+            int iterator = 0;
+            List<double> newVage = new List<double>();
+            foreach (var vage in _inputVages)
+            {
+                newVage.Add(vage * trainRate * BackPropagationValue * hiddens[iterator++].NeuronValue);
+            }
+            _inputVages.Clear();
+            _inputVages.AddRange(newVage);
+        }
     }
 }
