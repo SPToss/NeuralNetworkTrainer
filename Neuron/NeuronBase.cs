@@ -10,7 +10,8 @@ namespace NeuralNetworkTrainer.Neuron
     {
         public static Random random = null;
         public double NeuronValue { get; set; }
-        public double BackPropagationValue { get; set; }
+        public double BackPropagationValue { get; set;}
+        public string Name;
 
         public NeuronBase()
         {

@@ -10,11 +10,14 @@ namespace NeuralNetworkTrainer.Neuron
     {
         public List<double> _inputVages { get; set; } = new List<double>();
         public double ExpectedOutput { get; set; }
+        public List<double> InputsDeltas { get; set; } = new List<double>();
         public OutputNeuron(int hiddentCount) : base()
         {
+            Name = @"OutputNeuron\OutputVage";
             for (int i = 0; i < hiddentCount; i++)
             {
                 _inputVages.Add(GetSartWage());
+                InputsDeltas.Add(0);
             }
         }
         public double CalculateValue(List<double> hiddenValues)
@@ -42,10 +45,20 @@ namespace NeuralNetworkTrainer.Neuron
             List<double> newVage = new List<double>();
             foreach (var vage in _inputVages)
             {
-                newVage.Add(vage * trainRate * BackPropagationValue * hiddens[iterator++].NeuronValue);
+                var delta = trainRate * BackPropagationValue * hiddens[iterator++].NeuronValue;
+                double newVages = vage + delta;
+                newVages += 0.01 * InputsDeltas[--iterator];
+                newVage.Add(newVages);
+                //newVage.Add(vage + trainRate * BackPropagationValue * hiddens[hiddens++].NeuronValue);
+                InputsDeltas[iterator] = delta;
+                iterator++;
             }
             _inputVages.Clear();
             _inputVages.AddRange(newVage);
+        }
+        public void SaveToFIle(int i)
+        {
+            FileHelper.SaveDataToFile(_inputVages.ToArray(), Name + i);
         }
     }
 }

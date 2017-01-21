@@ -9,10 +9,9 @@ namespace NeuralNetworkTrainer
 {
     public class FileHelper
     {
-        private const string filePath = "E:/Weights.txt";
-        public static void SaveDataToFile(double[] data)
+        public static void SaveDataToFile(double[] data,string fileName)
         {
-            using(StreamWriter sr = new StreamWriter(@filePath))
+            using (StreamWriter sr = new StreamWriter(@"E:\NeuralNetwork\" + fileName + ".txt"))
             {
                 foreach(var item in data)
                 {
@@ -21,9 +20,20 @@ namespace NeuralNetworkTrainer
             }           
         }
 
+        public static void SaveDataToFile(string[] data, string fileName)
+        {
+            using (StreamWriter sr = new StreamWriter(@"E:\NeuralNetwork\" + fileName + ".txt"))
+            {
+                foreach (var item in data)
+                {
+                    sr.WriteLine(item);
+                }
+            }
+        }
+
         public static double[] LoadDataFromFile()
         {   
-            var lines = File.ReadLines(@filePath).ToArray();
+            var lines = File.ReadLines(@"").ToArray();
             return lines.Select(x => Convert.ToDouble(x)).ToArray();
         }
     }

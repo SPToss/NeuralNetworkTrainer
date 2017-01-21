@@ -9,11 +9,14 @@ namespace NeuralNetworkTrainer.Neuron
     public class HiddenNeuron : NeuronBase
     {
         public List<double> _inputVages { get; set; } = new List<double>();
+        public List<double> InputsDeltas { get; set; } = new List<double>();
         public HiddenNeuron(int inputCount) : base()
         {
+            Name = @"HiddenNeuron\HiddenVage";
             for (int i = 0; i < inputCount; i++)
             {
                 _inputVages.Add(GetSartWage());
+                InputsDeltas.Add(0);
             }
         }
         public double CalculateValue(List<double> inputValues)
@@ -36,7 +39,7 @@ namespace NeuralNetworkTrainer.Neuron
                 x += output.BackPropagationValue * output._inputVages[iterator];
             }
 
-            BackPropagationValue = x;
+            BackPropagationValue = x * (NeuronValue * (1 - NeuronValue));
             return x;
         }
 
@@ -46,10 +49,20 @@ namespace NeuralNetworkTrainer.Neuron
             List<double> newVage = new List<double>();
             foreach(var vage in _inputVages)
             {
-                newVage.Add(vage * trainRate * BackPropagationValue * inputs[iterator++].NeuronValue); 
+                var delta = trainRate * BackPropagationValue * inputs[iterator++].NeuronValue;
+                double newVages = vage + delta;
+                newVages += 0.01 * InputsDeltas[--iterator];
+                newVage.Add(newVages);
+                InputsDeltas[iterator] = delta;
+                iterator++;
             }
             _inputVages.Clear();
             _inputVages.AddRange(newVage);
+        }
+
+        public void SaveToFIle(int i)
+        {
+            FileHelper.SaveDataToFile(_inputVages.ToArray(), Name + i);
         }
     }
 }

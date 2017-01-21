@@ -4,3 +4,5 @@ c:\users\sebastian\documents\visual studio 2015\Projects\NeuralNetworkTrainer\Ne
 c:\users\sebastian\documents\visual studio 2015\Projects\NeuralNetworkTrainer\NeuralNetworkTrainer\obj\Debug\NeuralNetworkTrainer.csprojResolveAssemblyReference.cache
 c:\users\sebastian\documents\visual studio 2015\Projects\NeuralNetworkTrainer\NeuralNetworkTrainer\obj\Debug\NeuralNetworkTrainer.exe
 c:\users\sebastian\documents\visual studio 2015\Projects\NeuralNetworkTrainer\NeuralNetworkTrainer\obj\Debug\NeuralNetworkTrainer.pdb
+C:\Users\Sebastian\documents\visual studio 2015\Projects\NeuralNetworkTrainer\NeuralNetworkTrainer\bin\Debug\log4net.dll
+C:\Users\Sebastian\documents\visual studio 2015\Projects\NeuralNetworkTrainer\NeuralNetworkTrainer\bin\Debug\log4net.xml
