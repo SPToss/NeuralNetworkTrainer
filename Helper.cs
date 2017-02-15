@@ -20,15 +20,7 @@ namespace NeuralNetworkTrainer
 
             for (int i = 0; i <= 255; i++)
             {
-                string value = string.Empty;
-                if(i== 0)
-                {
-                    value = "0";
-                }
-                else
-                {
-                    value = "1";
-                }
+                string value = value = i == 0 ? "0" : "1";
 
                 value = value.PadRight(i, '0');                
                 value = value.PadLeft(255, '0');

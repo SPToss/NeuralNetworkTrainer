@@ -11,6 +11,7 @@ namespace NeuralNetworkTrainer
     public class Network
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(Network));
+
         public static Random random;
         public Dictionary<int, int[]> InputsValues {get;set;}
         public Dictionary<int, int[]> OutputsValues { get; set; }
@@ -21,6 +22,7 @@ namespace NeuralNetworkTrainer
         public double error = 0.0;
         public Network(int inputs, int hidden, int outputs)
         {
+
             iteration = 0;
             error = 1.0;
             random = new Random(DateTime.Now.Millisecond);
@@ -127,27 +129,6 @@ namespace NeuralNetworkTrainer
                     Hiddens.ForEach(x => x.SaveToFIle(it++));
                     it = 0;
                     Outputs.ForEach(x => x.SaveToFIle(it++));
-                    var currentDataSet1 = GetRandomInput();
-                    var currentInput1 = InputsValues[currentDataSet];
-                    var currentOutput1 = OutputsValues[currentDataSet];
-                    foreach (var input in Inputs)
-                    {
-                        input.InputValues = currentInput1.ToList();
-                    }
-                    iterator = 0;
-                    foreach (var output in Outputs)
-                    {
-                        output.ExpectedOutput = currentOutput1[iterator++];
-                    }
-                    inputValues = Inputs.Select(x => x.CalculateValue()).ToList();
-                    hiddenValues = Hiddens.Select(x => x.CalculateValue(inputValues)).ToList();
-                    outputValues = Outputs.Select(x => x.CalculateValue(hiddenValues)).ToList();
-                    List<string> currentVsExpected = new List<string>();
-                    foreach(var outps in Outputs)
-                    {
-                        currentVsExpected.Add($"Current calculation : {outps.NeuronValue} \t Expected : {outps.ExpectedOutput}");
-                    }
-                    FileHelper.SaveDataToFile(currentVsExpected.ToArray(), "CurrentVsExpected");
                 }
             }
 

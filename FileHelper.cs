@@ -31,9 +31,9 @@ namespace NeuralNetworkTrainer
             }
         }
 
-        public static double[] LoadDataFromFile()
+        public static double[] LoadDataFromFile(string filename)
         {   
-            var lines = File.ReadLines(@"").ToArray();
+            var lines = File.ReadLines(@filename).ToArray();
             return lines.Select(x => Convert.ToDouble(x)).ToArray();
         }
     }

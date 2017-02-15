@@ -11,7 +11,7 @@ namespace NeuralNetworkTrainer.Neuron
 
         public List<double> InputVages { get; set; } = new List<double>();
         public List<int> InputValues { get; set; }
-        public List<double> InputsDeltas { get; set; } = new List<double>();
+        public List<double> InputsDeltas { get; set; }= new List<double>();
         public InputNeuron(int inputCount) : base()
         {
             Name = @"InputNeuron\InputVage";
